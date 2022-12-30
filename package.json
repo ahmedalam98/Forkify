@@ -24,8 +24,8 @@
     "sass": "^1.26.10"
   },
   "dependencies": {
-    "core-js": "^3.27.1",
+    "core-js": "^3.6.5",
     "fractional": "^1.0.0",
-    "regenerator-runtime": "^0.13.11"
+    "regenerator-runtime": "^0.13.7"
   }
 }
