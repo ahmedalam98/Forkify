@@ -12,12 +12,14 @@ import 'regenerator-runtime/runtime';
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
+
     if (!id) return;
     // Render spinner while fetching data
     recipeView.renderSpinner();
-    // First API Call
+
+    resultsView.update(model.getSearchResultsPage());
+
     // 1) Loading Recipe
-    // 1.2
     await model.loadRecipe(id);
 
     // 2) Rendering Recipe
@@ -61,7 +63,7 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update recipe view
-  recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 
 const init = function () {
