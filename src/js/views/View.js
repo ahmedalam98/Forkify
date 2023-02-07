@@ -25,7 +25,6 @@ export default class View {
     // Comparing virtual DOM with the actual DOM
     newElements.forEach((newElement, i) => {
       const currentElement = curElements[i];
-      console.log(newElement.isEqualNode(currentElement));
 
       if (
         !newElement.isEqualNode(currentElement) &&
