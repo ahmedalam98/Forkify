@@ -30,13 +30,19 @@
 }
 
 .copyright {
+  text-align: center;
   color: $color-grey-dark-2;
   font-size: 1.2rem;
   padding: 0 3.5rem;
   margin-top: 4rem;
 
-  .twitter-link:link,
-  .twitter-link:visited {
-    color: $color-grey-dark-2;
+  .website-link:link,
+  .website-link:visited {
+    font-weight: 700;
+    text-decoration: none;
+    color: $color-grey-dark-1;
+  }
+  .website-link:hover {
+    color: $color-grey-dark-1;
   }
 }
