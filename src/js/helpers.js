@@ -1,7 +1,9 @@
 import { async } from 'regenerator-runtime';
 import { TIMEOUT_SEC } from './config';
 
+// to make a time-limit so that fetching doesn't go forever
 const timeout = function (s) {
+  // returning a promise that will be rejected after "s" seconds
   return new Promise(function (_, reject) {
     setTimeout(function () {
       reject(new Error(`Request took too long! Timeout after ${s} second`));

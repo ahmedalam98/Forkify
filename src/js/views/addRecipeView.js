@@ -10,6 +10,7 @@ class AddRecipeView extends View {
   _btnOpen = document.querySelector('.nav__btn--add-recipe');
   _btnClose = document.querySelector('.btn--close-modal');
 
+  // here we create a constructor to immidiatly call some functions when the instance is created
   constructor() {
     super();
     this._addHandlerShowWindow();
@@ -30,10 +31,17 @@ class AddRecipeView extends View {
     this._overlay.addEventListener('click', this.toggleWindow.bind(this));
   }
 
+  // pub/sub pattern
   addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      // instead of going through each one of the values in the form, there's an easier way : (FormData)
+      // it's a promise as we wait for the formData object which uses (fetch())
       const dataArr = [...new FormData(this)];
+      // remember : (this) here refers to the one calling the eventListener which is the (this._parentElement) which is a <form> element
+
+      // convert it to an object
       const data = Object.fromEntries(dataArr);
       handler(data);
     });

@@ -5,7 +5,11 @@ class PreviewView extends View {
   _parentElement = '';
 
   _generateMarkup() {
+    // get the hash that indicate a certain recipe that would change with "hashchange" event
+    // slicing to get red of "#"
     const id = window.location.hash.slice(1);
+
+    // the <a> element has href of the hash so when we click on any recipe on the results section, the page's hash will change which will trigger the eventListener function for "hashchange" event
 
     return `
       <li class="preview">

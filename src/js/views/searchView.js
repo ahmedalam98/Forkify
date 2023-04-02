@@ -1,6 +1,7 @@
 class SearchView {
   _parentElement = document.querySelector('.search');
 
+  // get the search-keyword
   getQuery() {
     const query = this._parentElement.querySelector('.search__field').value;
     this._clearInput();
@@ -11,6 +12,7 @@ class SearchView {
     this._parentElement.querySelector('.search__field').value = '';
   }
 
+  // pub/sub pattern
   addHandlerSearch(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();

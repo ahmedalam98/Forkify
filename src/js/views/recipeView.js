@@ -1,6 +1,6 @@
 import View from './View.js';
 import icons from 'url:../../img/icons.svg';
-import { Fraction } from 'fractional';
+import { Fraction } from 'fractional'; // library used to convert numbers to fractions ( 0.5 => 1/2 )
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -8,15 +8,25 @@ class RecipeView extends View {
   _message = '';
   _data;
 
+  // pub/sub pattern
   addHandlerRender(handler) {
+    // "hashchange" is an event when clicking on a link so the hash changes
+    // "load" is an event so that the recipe shows automatically when loading the page without selecting a recipe again
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
 
+  // pub/sub pattern
   addHandlerUpdateServings(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--update-servings');
       if (!btn) return;
-      const { update } = btn.dataset;
+
+      // from here we control the serving number as in the html code below we increase/decrease it by 1 in (data-update-to) attribute
+      const { update } = btn.dataset; // notice the camelCase
+
+      // note : if you used (+) in the line above to convert it to number it will yield an error as you are trying to convert an (object to a number)
+
+      // (+) to convert to number here
       if (+update > 0) handler(+update);
     });
   }
@@ -126,7 +136,9 @@ class RecipeView extends View {
         <use href="${icons}#icon-check"></use>
       </svg>
       <div class="recipe__quantity">${
+        // using fractional library guides from documentation
         ing.quantity ? new Fraction(ing.quantity).toString() : ''
+        // we used ternary operator as if value was null => "fractional library" will return NaN
       }</div>
       <div class="recipe__description">
         <span class="recipe__unit">${ing.unit}</span>
@@ -136,4 +148,5 @@ class RecipeView extends View {
   }
 }
 
+// we export the "instance" and not the "class" as if we exported the class it may create multiple classes which complicate things
 export default new RecipeView();

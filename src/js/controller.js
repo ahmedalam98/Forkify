@@ -117,8 +117,11 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
+// Runs at first so that the publisher notify the subscribersw
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
+
+  // pub/sub pattern
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
